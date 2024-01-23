@@ -13,7 +13,7 @@ void create_list(int data){
     temp->next = NULL;
 
     if(start==NULL){
-        start =temp;
+        start=temp;
     }else{
         q=start;
         while(q->next!=NULL){
@@ -23,6 +23,16 @@ void create_list(int data){
     }
 
 }
+
+void  addfirst(int data){
+    struct node *temp;
+    temp=(struct node*)malloc(sizeof(struct node));
+    temp->data = data;
+    temp->next = start;
+    start=temp;
+}
+
+
 
 void addafter(int data, int pos){
     struct node *temp ,*q;
@@ -44,6 +54,26 @@ void addafter(int data, int pos){
     }
 }
 
+void reverse(){
+    struct node *p1,*p2,*p3;
+    if(start->next==NULL){
+        return;
+    }
+    p1=start;
+    p2=p1->next;
+    p3=p2->next;
+    p1->next=NULL;
+    p2->next = p1;
+    while(p3!=NULL){
+        p1=p2;
+        p2=p3;
+        p3=p3->next;
+        p2->next=p1;
+    }
+    start=p2;
+}
+
+
 void display(){
     struct node *q;
     if(start == NULL){
@@ -63,7 +93,7 @@ int main(void)
 {
      int node; 
     //createnode(node);
-    int i,item;
+    int i,item, new;
 
     printf("Enter how many nodes you want : ");
     scanf("%d",&node);
@@ -73,9 +103,15 @@ int main(void)
             scanf("%d",&item);
             create_list(item);
         }
-    display();
+        display();
+        reverse();
+        display();
+        printf("Enter first Value : ");
+            scanf("%d",&new);
+        addfirst(new);
+        display();
 
-return 0;
+// return 0;
 
 return 0;
 }
