@@ -73,7 +73,53 @@ void reverse(){
     start=p2;
 }
 
+void delete(int data){
+    struct node *q,*temp;
+    if(start->data == data){
+        temp = start;
+        start= start->next;
+        free(temp);
+        return;
+    }
 
+    q=start;
+    while(q->next->next !=NULL){
+        if(q->next->data == data){
+            temp = q->next;
+            q->next =temp->next;
+            free(temp);
+            return;
+        }
+    }
+
+    if(q->next->data==data){
+        temp = q->next;
+        free(temp);
+        q->next = NULL;
+        return;
+
+    }
+    printf("\n Elemnet  %d not found ", data);
+
+}
+
+
+void search(int data){
+    struct node *ptr = start;
+    int pos= 1;
+    while(ptr!=NULL){
+        if(ptr-> data == data){
+            printf("\n %d found at position %d", data, pos);
+            return;
+        }
+        pos++;
+        ptr=ptr->next;
+    }
+
+    if(ptr==NULL)
+    printf("\n Item %d not found in list", data);
+
+}
 void display(){
     struct node *q;
     if(start == NULL){
