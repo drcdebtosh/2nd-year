@@ -1,0 +1,26 @@
+port ( A : in STD_LOGIC;
+       B : in STD_LOGIC;
+       C : in STD_LOGIC;
+       S : OUT STD_LOGIC_VECTOR (8 DOENTO 0);
+);
+
+BEGIN 
+    PROCESS (A,B,C)
+    VARIABLE TEMP:STD_LOGIC_VECTOR(2 DOWNTO 0);
+    BEGIN
+        TEMP:= (A&B&C);
+
+        CASE TEMP IS
+            WHEN "000"=>S<= "00000001";
+            WHEN "001"=>S<= "00000010";
+            WHEN "010"=>S<= "00000100";
+            WHEN "011"=>S<= "00001000";
+            WHEN "100"=>S<= "00010000";
+            WHEN "101"=>S<= "00100000";
+            WHEN "110"=>S<= "01000000";
+            WHEN OTHERS =>S<= "10000000";
+
+            END CASE;
+            END PROCESS;
+END Behavioral;
+

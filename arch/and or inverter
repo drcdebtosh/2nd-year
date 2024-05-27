@@ -1,0 +1,33 @@
+port (A : in STD_LOGIC;
+      B : in STD_LOGIC;
+      C : in STD_LOGIC;
+      D : in STD_LOGIC;
+      Y : out STD_LOGIC;);
+
+BEGIN 
+    COMPONENT AND_G IS
+    PORT(I1: in STD_LOGIC;
+         I2: IN STD_LOGIC;
+         O: out STD_LOGIC;);
+    END COMPONENT;
+
+    COMPONENT OR_G IS
+    PORT(I1,I2: in STD_LOGIC;
+         O: out STD_LOGIC;);              
+    END COMPONENT;
+
+    COMPONENT NOT_G IS
+    PORT(I1: in STD_LOGIC;
+         O: out STD_LOGIC;);
+    END COMPONENT;
+
+    SIGNAL S1,S2,S3: STD_LOGIC;
+
+    begin
+
+    AND_1:AND_G PORT MAP(A,B,S1);
+    AND_2:AND_G PORT MAP(C,D,S2);
+    OR_1:OR_G PORT MAP(S1,S2,S3);
+    NOT_1:NOT_G PORT MAP(S3,Y);
+
+    END Behavioral;

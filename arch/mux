@@ -1,0 +1,25 @@
+port (A : in STD_LOGIC;
+      B : in STD_LOGIC;
+      C : in STD_LOGIC;
+      D : in STD_LOGIC;
+      S0 : in STD_LOGIC;
+      S1 : in STD_LOGIC;
+      O : out STD_LOGIC;
+);
+
+begin
+    PROCESS (S0,S1)
+    VARIALBE temp:STD_LOGIC_VECTOR(1 DOWNTO 0);
+    begin
+    TEMP:= (S0&S1);
+    CASE TEMP IS
+        WHEN "00" => O <=A;
+        WHEN "01" => O <=B;
+        WHEN "10" => O <=C;
+        WHEN OTHERS => O <=D;
+
+        END CASE;
+        END PROCESS;
+
+        
+END Behavioral;l        
